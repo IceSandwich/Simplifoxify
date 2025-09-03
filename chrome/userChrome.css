@@ -6,19 +6,43 @@
 :root {
   --control-bottons-width: 150px;
   --narrow-space: 2px;
+
+  /* 导航栏渐变背景 */
+  --blend-background-start: rgba(212,212,212, 0.5);
+  --blend-background-end: rgba(174,173,173, 0.8);
 }
 
 #TabsToolbar { /* 标签栏 */
   padding-top: 44px !important;
 
   /* 去掉这个背景，可适应当前主题 */
-  background-image: linear-gradient(rgb(212,212,212),rgb(174,173,173));
+  background-image: linear-gradient(var(--blend-background-start),var(--blend-background-end));
 }
 
 #TabsToolbar .titlebar-buttonbox-container { /* 最大最小化关闭按钮 */
   margin-top: -44px !important;
   margin-bottom: 44px !important;
   padding-left: 20px;
+}
+
+#TabsToolbar .titlebar-buttonbox-container .titlebar-min {
+  list-style-image: url(chrome://browser/skin/window-controls/minimize-themes.svg) !important;
+}
+
+#TabsToolbar .titlebar-buttonbox-container .titlebar-max {
+  list-style-image: url(chrome://browser/skin/window-controls/maximize-themes.svg) !important;
+}
+
+#TabsToolbar .titlebar-buttonbox-container .titlebar-restore {
+  list-style-image: url(chrome://browser/skin/window-controls/restore-themes.svg) !important;
+}
+
+#TabsToolbar .titlebar-buttonbox-container .titlebar-close {
+  list-style-image: url(chrome://browser/skin/window-controls/close-themes.svg) !important;
+}
+
+#TabToolbar .tab-label {
+  text-shadow: white 0px 0px 8px;
 }
 
 #nav-bar { /* 长导航栏 */
@@ -28,6 +52,7 @@
   height      : 44px !important;
   margin-bottom: calc(44px - var(--narrow-space) - 2px) !important;
   padding-top: 6px;
+  border-top: unset;
 }
 
 #back-button { /* 回退按钮 */
@@ -42,8 +67,8 @@
   list-style-image: url("icons/refresh-1x.svg") !important;
 }
 
-#urlbar-input-container { /* url 地址栏 + 搜索栏 文字 */
-  text-align: center;
+#urlbar-input { /* url 地址栏 + 搜索栏 文字 */
+  text-align: center !important;
 }
 
 #tracking-protection-icon-container { /* 跟踪器按钮 */
@@ -66,13 +91,27 @@
   list-style-image: url("icons/lock.svg") !important;
 }
 
+#urlbar-background {
+  background-color: rgba(255, 255, 255, 0.54) !important;
+}
+
+#urlbar:is([focused], [open]) #urlbar-background {
+  background-color: white !important;
+}
+
+#urlbar-searchmode-switcher { /* 搜索栏 搜索引擎图标 */
+  background-color: transparent;
+}
+
 #TabsToolbar .tab-background { /* 标签 背景 */
   position: relative !important;
   box-shadow: none !important;
   opacity: 1 !important;
   border: none !important;
   outline: none !important;
-  margin-block: 0 !important;
+  /* margin-block: 0 !important; */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
   border-radius: 0 !important;
 }
 
@@ -80,13 +119,22 @@
   display: none;
 }
 
+#TabToolbar .tab-stack { /* 标签页 */
+  padding-top: 6px;
+}
+
+.tabbrowser-tab:is([selected], [multiselected]) { /* 激活标签页 */
+  min-width: 260px !important;
+}
+
 #TabsToolbar .tab-background:is([selected], [multiselected]) .tab-context-line { /* 激活标签页 帽子 */
-  height: 3px;
+  height: 4px;
   background-color: #694ec8;
 }
 
 #TabsToolbar .tab-background:is([selected], [multiselected]) { /* 激活标签页 背景 */
   box-shadow: none !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
 #TabsToolbar .tabbrowser-tab:not([selected]) .tab-close-button { /* 非激活标签页 关闭按钮 */
