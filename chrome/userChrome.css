@@ -10,6 +10,11 @@
   /* 导航栏渐变背景 */
   --blend-background-start: rgba(212,212,212, 0.5);
   --blend-background-end: rgba(174,173,173, 0.8);
+
+  /* 激活标签页相关 */
+  --active-tab-hat-color: #3F51B5; /* indigo */
+  /* --active-tab-hat-color: #694ec8; */ /* Default */
+  --active-tab-text-color: black;
 }
 
 #TabsToolbar { /* 标签栏 */
@@ -52,7 +57,7 @@
   height      : 44px !important;
   margin-bottom: calc(44px - var(--narrow-space) - 2px) !important;
   padding-top: 6px;
-  border-top: unset;
+  border-top: unset !important;
 }
 
 #back-button { /* 回退按钮 */
@@ -115,6 +120,10 @@
   border-radius: 0 !important;
 }
 
+.tab-close-button, .close-icon { /* 标签 关闭按钮 */
+  color: #F44336 !important;
+}
+
 #scrollbutton-down, #scrollbutton-up, spacer[part="overflow-end-indicator"], spacer[part="overflow-start-indicator"] { /* 标签滚动条 */
   display: none;
 }
@@ -129,7 +138,12 @@
 
 #TabsToolbar .tab-background:is([selected], [multiselected]) .tab-context-line { /* 激活标签页 帽子 */
   height: 4px;
-  background-color: #694ec8;
+  background-color: var(--active-tab-hat-color);
+}
+
+#TabsToolbar .tab-label:is([selected], [multiselected]) { /* 激活标签页 网站标题文本 */
+  color: var(--active-tab-text-color);
+  text-shadow: white 10px 10px;
 }
 
 #TabsToolbar .tab-background:is([selected], [multiselected]) { /* 激活标签页 背景 */
@@ -153,6 +167,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.urlbarView { /* 搜索栏弹出的搜索记录 */
+  /*
+  background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("blob:https://www.bing.com/a17f19c0-5409-4acf-8a9c-d08243058618") !important;
+  margin: 0 !important;
+  padding: 0 6pt !important;
+  width: 100% !important;
+  */
 }
 
 .private-browsing-indicator { /* 隐身模式图标 */
